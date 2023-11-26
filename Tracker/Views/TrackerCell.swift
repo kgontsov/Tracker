@@ -28,6 +28,13 @@ final class TrackerCell: UICollectionViewCell {
         return view
     }()
     
+    private var emojiBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        view.layer.cornerRadius = 12
+        return view
+    }()
+    
     private var emojiLabel: UILabel = {
         let label = UILabel()
         return label
@@ -35,7 +42,7 @@ final class TrackerCell: UICollectionViewCell {
     
     private var trackerTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "Делать «спринт"
+        label.text = "Делать спринт"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         return label
@@ -79,8 +86,8 @@ final class TrackerCell: UICollectionViewCell {
         let formattedLabel = formatDayLabel(daysCount: completedDays)
         self.completedDaysLabel.text = formattedLabel
         
-        let tappedImage = UIImage(named: "addDaysButtonIconTapped")
-        let normalImage = UIImage(named: "addDaysButtonIcon")
+        let tappedImage = UIImage(named: "addDaysButtonIconTapped")?.withRenderingMode(.alwaysOriginal)
+        let normalImage = UIImage(named: "addDaysButtonIcon")?.withRenderingMode(.alwaysTemplate)
         
         let image = isCompletedToday ? tappedImage : normalImage
         trackButton.setImage(image, for: .normal)
@@ -88,7 +95,7 @@ final class TrackerCell: UICollectionViewCell {
 
     
     private func setupViews() {
-        [backGroundViewColor, emojiLabel, trackerTextLabel, trackButton, completedDaysLabel].forEach { contentView.falseAutoresizing($0) }
+        [backGroundViewColor, emojiBackgroundView, emojiLabel, trackerTextLabel, trackButton, completedDaysLabel].forEach { contentView.falseAutoresizing($0) }
         
         NSLayoutConstraint.activate([
             backGroundViewColor.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -96,12 +103,19 @@ final class TrackerCell: UICollectionViewCell {
             backGroundViewColor.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             backGroundViewColor.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
             
+            emojiBackgroundView.widthAnchor.constraint(equalToConstant: 24),
+            emojiBackgroundView.heightAnchor.constraint(equalTo: emojiBackgroundView.widthAnchor, multiplier: 1),
+            emojiBackgroundView.topAnchor.constraint(equalTo: backGroundViewColor.topAnchor, constant: 12),
+            emojiBackgroundView.leadingAnchor.constraint(equalTo: backGroundViewColor.leadingAnchor, constant: 12),
+            
             emojiLabel.widthAnchor.constraint(equalToConstant: 24),
             emojiLabel.heightAnchor.constraint(equalTo: emojiLabel.widthAnchor, multiplier: 1),
             emojiLabel.topAnchor.constraint(equalTo: backGroundViewColor.topAnchor, constant: 12),
             emojiLabel.leadingAnchor.constraint(equalTo: backGroundViewColor.leadingAnchor, constant: 12),
+            emojiLabel.centerXAnchor.constraint(equalTo: emojiBackgroundView.centerXAnchor),
+            emojiLabel.centerYAnchor.constraint(equalTo: emojiBackgroundView.centerYAnchor),
             
-            trackerTextLabel.leadingAnchor.constraint(equalTo: emojiLabel.leadingAnchor),
+            trackerTextLabel.leadingAnchor.constraint(equalTo: emojiLabel.trailingAnchor, constant: 8),
             trackerTextLabel.bottomAnchor.constraint(equalTo: backGroundViewColor.bottomAnchor, constant: -12),
             trackerTextLabel.trailingAnchor.constraint(equalTo: backGroundViewColor.trailingAnchor, constant: -12),
             

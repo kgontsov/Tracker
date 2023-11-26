@@ -42,7 +42,6 @@ final class TrackersViewController: UIViewController {
         title: "Что будем отслеживать?"
     )
     
-    
     init() {
         self.currentDate = Date()
         super.init(nibName: nil, bundle: nil)
@@ -79,7 +78,7 @@ final class TrackersViewController: UIViewController {
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Трекеры"
-        let addDaysButtonIcon = UIImage(named: "addDaysButtonIcon")
+        let addDaysButtonIcon = UIImage(named: "addTrackerIcon")
         let addButton = UIBarButtonItem(image: addDaysButtonIcon, style: .plain, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .black
         navigationItem.leftBarButtonItem = addButton

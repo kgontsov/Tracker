@@ -189,12 +189,16 @@ extension CreateTrackerViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UITextFieldDelegate
+
 extension CreateTrackerViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
+
+// MARK: - ScheduleProtocolDelegate
 
 extension CreateTrackerViewController: ScheduleProtocolDelegate {
     func saveSchedule(weekSchedule: [WeekDay]?) {
