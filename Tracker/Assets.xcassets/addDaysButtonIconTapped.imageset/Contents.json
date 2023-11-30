@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "trackerTabBarIcon.png",
+      "filename" : "addDaysButtonIconTapped.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "trackerTabBarIcon@2x.png",
+      "filename" : "addDaysButtonIconTapped@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "trackerTabBarIcon@3x.png",
+      "filename" : "addDaysButtonIconTapped@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
